@@ -11,8 +11,12 @@ NProgress.configure({ showSpinner: false })
 router.beforeEach(async (to, _from, next) => {
   NProgress.start()
   const userStore = useUserStoreHook()
-  const token = getToken()
-
+  let token = getToken()
+  if(token===undefined){
+    token = userStore.token
+  }
+  //alert(userStore.token)
+  console.log(userStore.token)
   // 如果没有登陆
   if (!token) {
     // 如果在免登录的白名单中，则直接进入

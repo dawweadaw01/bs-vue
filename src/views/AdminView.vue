@@ -36,7 +36,7 @@ const index = () => {
         <el-dropdown class="right-menu-item">
           <div class="right-menu-avatar">
             <el-avatar :icon="UserFilled" :size="30"/>
-            <span>admin</span>
+            <span>&nbsp admin</span>
           </div>
           <template #dropdown>
             <el-dropdown-menu>
@@ -107,28 +107,46 @@ const index = () => {
     </el-container>
   </div>
 </template>
-<style scoped>
 
+<style scoped>
+/* 调整整体布局的背景和字体 */
+.common-layout {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background: #f0f2f5; /* 给予一个轻微的灰色背景 */
+}
+
+/* 顶部栏的样式 */
 .el-header {
+  background-color: #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+  padding: 0 20px; /* 增加左右的内边距 */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* 其他样式 */
 }
 
-.right-menu-item {
+/* 标题和 Logo 的样式 */
+.title {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  /* 如果需要的话，可以添加右边距 */
-  margin-right: 20px;
+
+  h1 {
+    font-size: 24px;
+    color: #606266;
+    margin-left: 12px;
+  }
+
+  img {
+    border-radius: 50%; /* 圆角 */
+    height: 60px; /* Logo 的大小 */
+    width: 60px; /* 保持 Logo 的宽高一致 */
+    object-fit: cover; /* 保持图片比例 */
+  }
 }
 
-
-router-link {
-  color: black;
-  text-decoration: none;
-}
-
+/* 右上角下拉菜单样式 */
 .right-menu {
   margin-right: 10px;
   height: 100%;
@@ -147,17 +165,47 @@ router-link {
       .el-avatar {
         margin-right: 10px;
       }
-
-      span {
-        font-size: 16px;
-      }
     }
   }
 }
 
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
-  min-height: 400px;
+/* 侧边栏样式 */
+.el-aside {
+  background-color: #fff;
+
+  .el-menu-vertical-demo {
+    border-right: none; /* 去除边框 */
+  }
+
+  /* 菜单收缩展开按钮样式 */
+
+  .el-radio-group {
+    padding: 10px;
+    background: #f4f4f4;
+    border-radius: 4px;
+  }
+}
+
+/* 主要内容区域样式 */
+.el-main {
+  background-color: #fff;
+  padding: 20px; /* 内边距 */
+  margin: 20px; /* 与侧边栏的间隔 */
+  border-radius: 4px; /* 圆角 */
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+}
+
+/* 菜单项样式 */
+.el-menu-item {
+  &:hover {
+    background-color: #eef1f6; /* 鼠标悬浮背景颜色 */
+  }
+}
+
+/* 子菜单标题样式 */
+.el-sub-menu__title {
+  font-size: 14px;
+  color: #606266;
 }
 
 .title {

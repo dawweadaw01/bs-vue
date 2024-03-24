@@ -4,10 +4,15 @@
 
 <template>
   <div>
-    <router-link to="/home" class="logo">
-      <el-button>主页</el-button>
+    <router-link to="/" class="logo">
+      <el-button>首页</el-button>
     </router-link>
-    <router-view></router-view>
+    <router-link to="/home" class="logo">
+      <el-button>个人主页</el-button>
+    </router-link>
+    <div>
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 

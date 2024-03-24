@@ -7,7 +7,6 @@ import {useUserStoreHook} from "@/store/modules/user";
 
 //
 let activeIndex = router.currentRoute.value.path
-console.log(activeIndex)
 const isActive = ref(true)
 const hasError = ref(false)
 
