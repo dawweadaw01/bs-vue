@@ -6,14 +6,11 @@ import {ElMessage, ElMessageBox, type FormInstance, type FormRules} from "elemen
 import type {sysPermission, sysRoles} from "@/api/SysRolePermission/types/sysRolePermission";
 import {
   addPermissionDataApi,
-  addRoleDataApi,
   addRolePermissionApi, deletePermissionApi,
-  deleteRoleApi,
   getPermissionsApi, updatePermissionDataApi,
-  updateRoleDataApi
+
 } from "@/api/SysRolePermission";
 import {CirclePlus, Refresh, RefreshRight, Search} from "@element-plus/icons-vue"
-import type {UserList} from "@/api/login/types/login";
 import {cloneDeep} from "lodash-es";
 
 const loading = ref<boolean>(false)

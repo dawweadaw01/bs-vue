@@ -3,11 +3,17 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <RouterView />
+  <div class="main">
+    <RouterView />
+  </div>
 </template>
 
 <style scoped>
 
+.main{
+  height: 1000px;
+  background-color: #f6f5f5;
+}
 nav {
   width: 100%;
   font-size: 12px;

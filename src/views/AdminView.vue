@@ -116,6 +116,8 @@ const index = () => {
   background: #f0f2f5; /* 给予一个轻微的灰色背景 */
 }
 
+
+
 /* 顶部栏的样式 */
 .el-header {
   background-color: #fff;

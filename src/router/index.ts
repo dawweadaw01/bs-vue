@@ -7,11 +7,52 @@ const router = createRouter({
             path: '/',
             name: 'index',
             component: () => import('@/views/Index.vue'),
+            redirect(to) {
+                return {path: '/index'}
+            },
             children: [
                 {
                     path: '/home',
                     name: 'home',
-                    component: () => import('@/views/HomeView.vue'),
+                    component: () => import('@/views/home/HomeView.vue'),
+                    children: [
+                        {
+                            path: '/order',
+                            name: 'order',
+                            component: () => import('@/views/home/Order.vue'),
+                            children: []
+                        },
+                        {
+                            path: '/collection',
+                            name: 'collection',
+                            component: () => import('@/views/home/Collection.vue'),
+                            children: []
+                        },
+
+                    ]
+                },
+                {
+                    path: '/index',
+                    name: 'index',
+                    component: () => import('@/views/index/Index.vue'),
+                    children: []
+                },
+                {
+                    path: '/setting',
+                    name: 'setting',
+                    component: () => import('@/views/home/Setting.vue'),
+                    children: []
+                },
+                {
+                    path: '/catCategories',
+                    name: 'catCategories',
+                    component: () => import('@/views/cat/UserCatCategories.vue'),
+                    children: []
+                },
+                {
+                    path: '/shop',
+                    name: 'shop',
+                    component: () => import('@/views/shop/Shop.vue'),
                     children: []
                 },
             ]

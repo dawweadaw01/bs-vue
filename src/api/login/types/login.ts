@@ -3,7 +3,8 @@ export interface LoginRequestData {
     name: string
     /** 密码 */
     pwd: string
-
+    phone?: string
+    code?: string
 }
 
 export interface UserListRequestData {
@@ -25,5 +26,25 @@ export interface UserList {
     roles: string
 }
 
+export interface UserInfo{
+    id: number
+    username?: string
+    phone?: string
+    email?: string
+    avatar?: string
+    autograph?: string
+    birthDate?: Date
+    address?: string
+}
+
+export interface UpdateUserPhone{
+    phone: string
+    code: string
+}
+
+export interface UpdateUserPwd{
+    oldPwd: string
+    newPwd: string
+}
 
 
