@@ -55,6 +55,12 @@ const router = createRouter({
                     component: () => import('@/views/shop/Shop.vue'),
                     children: []
                 },
+                {
+                    path: '/shopDetails',
+                    name: 'shopDetails',
+                    component: () => import('@/views/shop/ShopDetails.vue'),
+                    children: []
+                },
             ]
         },
         {
@@ -90,6 +96,11 @@ const router = createRouter({
                     path: 'cat',
                     name: 'adminCat',
                     component: () => import('@/views/cat/CatCategories.vue')
+                },
+                {
+                    path: 'shopCat',
+                    name: 'shopCat',
+                    component: () => import('@/views/shop/shopCat.vue')
                 }
             ]
         },

@@ -6,7 +6,7 @@ import {useRouter} from "vue-router";
 import {checkPermission} from "@/util/permission";
 
 
-const isCollapse = ref(true)
+const isCollapse = ref(false)
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
@@ -64,11 +64,11 @@ const index = () => {
               @close="handleClose"
               router="router"
           >
-            <el-menu-item index="/admin/index">
+            <el-menu-item index="/admin/index" v-if="checkPermission(['shop'])">
               <el-icon>
                 <location/>
               </el-icon>
-              <template #title>主页</template>
+              <template #title>商家基本信息</template>
             </el-menu-item>
             <el-menu-item index="/admin/user" v-if="checkPermission(['super-admin'])">
               <el-icon>
@@ -92,11 +92,11 @@ const index = () => {
               </el-icon>
               <template #title>猫咪种类管理</template>
             </el-menu-item>
-            <el-menu-item index="4" ref="dis">
+            <el-menu-item index="/admin/shopCat" v-if="checkPermission(['shop'])">
               <el-icon>
                 <document/>
               </el-icon>
-              <template #title>Navigator Three</template>
+              <template #title>商家猫咪管理</template>
             </el-menu-item>
           </el-menu>
         </el-aside>

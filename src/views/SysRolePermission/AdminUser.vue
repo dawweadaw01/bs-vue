@@ -133,7 +133,6 @@ const UpdateUser = () => {
     if (!valid) return console.error("表单校验不通过", fields)
     loading.value = true
     const api = updateTableDataApi
-    console.log(formData.value)
     api(formData.value)
         .then(() => {
           ElMessage.success("操作成功")

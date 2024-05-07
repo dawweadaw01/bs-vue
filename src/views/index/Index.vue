@@ -3,7 +3,7 @@
 </script>
 
 <template>
-index
+
 </template>
 
 <style scoped>

@@ -136,6 +136,7 @@ function createRequest(service: AxiosInstance) {
         };
 
         if (config.contentType === 'application/x-www-form-urlencoded') {
+            console.log('application/x-www-form-urlencoded')
             config.transformRequest = [(data) => {
                 return Object.keys(data)
                     .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))

@@ -78,7 +78,6 @@ const success = () => {
     loginFormRef.value?.validate(async (valid: boolean, fields) => {
       console.log(loginFormData)
       if (valid) {
-        console.log("2131"+isPhoneLogin.value)
         if (props.title === '注册') {
           await useUserStore().reg(loginFormData)
         } else if (!isPhoneLogin.value) {
@@ -87,6 +86,7 @@ const success = () => {
           await useUserStore().phoneLogin(loginFormData)
         }
         emit('update:modelValue', false);
+        ElMessage.success("成功")
         await router.push({path: "/"})
       } else {
         console.error("表单校验不通过", fields)

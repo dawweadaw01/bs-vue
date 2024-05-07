@@ -2,6 +2,7 @@
 import router from '@/router';
 import {type TabsPaneContext} from "element-plus";
 import {useUserStore} from "@/store/modules/user";
+import {checkPermission} from "@/util/permission";
 
 
 const setting = () => {
@@ -11,10 +12,23 @@ const setting = () => {
 
 const userStore = useUserStore()
 
-console.log("a"+userStore.userAvatar);
+console.log("a" + userStore.userAvatar);
 console.log(useUserStore().autograph)
 const handleClick = (tab: TabsPaneContext, event: Event) => {
   router.push("/" + tab.props.name);
+}
+
+const logout = () => {
+  userStore.logout()
+  router.push("/")
+}
+
+const admin = () => {
+  router.push("/admin")
+}
+
+const pay = () => {
+  window.open('http://localhost:8001/api/pay/pay?oid=' + 1)
 }
 
 </script>
@@ -26,8 +40,15 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
         <el-header>
           <div class="avatar">
             <el-avatar :size="100" :src="useUserStore().userAvatar"></el-avatar>
-            <span class="username">{{useUserStore().username}}</span>
-            <el-button class="usersetting" @click="setting">账号设置</el-button>
+            <span class="username">{{ useUserStore().username }}</span>
+            <div class="usersetting">
+              <el-button v-if="checkPermission(['super-admin','shop'])" @click="admin">后台管理</el-button>
+              <el-button @click="logout">退出登录</el-button>
+              <el-button @click="setting">账号设置</el-button>
+              <div class="payBtn">
+                <el-button type="primary" @click="pay">支付</el-button>
+              </div>
+            </div>
           </div>
           <div class="div-autograph">
             <span class="autograph" v-if="useUserStore().autograph">{{ useUserStore().autograph }}</span>
@@ -52,7 +73,6 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
 
 
 .usersetting {
-
   float: right;
 
   &:hover {

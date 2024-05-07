@@ -15,3 +15,18 @@ export interface GetCatCategoriesListParams{
     description?: string
     origin?: string
 }
+
+export interface CatInfo{
+    catId: number
+    categoryId: number
+    catCategories?: CatCategories
+    name: string
+    age: number
+    gender: string
+    preferences: string
+    healthStatus: string
+    availableForAdoption: boolean
+    shopId: number
+    healthStatusCode: number
+    images: image[]
+}

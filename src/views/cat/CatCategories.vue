@@ -179,7 +179,6 @@ const handleImageChange: UploadProps['onChange'] = (uploadFile) => {
   formData.append("file", uploadFile.raw as Blob)
   formData.append("id", catCategoryId.value.toString())
   adminUploadImage(formData)
-  console.log(formData)
 }
 
 watch([() => paginationData.currentPage, () => paginationData.pageSize], getTableData, {immediate: true})
@@ -271,7 +270,7 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
         <el-button type="primary" @click="handleCreateOrUpdate" :loading="loading">确认</el-button>
       </template>
     </el-dialog>
-    <el-dialog v-model="dialog" :title="'图片信息'" @closed="resetImage" width="80%">
+    <el-dialog v-model="dialog" :title="'图片信息'" @closed="resetImage" width="50%">
       <el-upload
           v-model:file-list="fileList"
           list-type="picture-card"

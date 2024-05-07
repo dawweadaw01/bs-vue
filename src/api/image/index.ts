@@ -25,3 +25,48 @@ export function getCatCategoriesImage(id: number) {
         method: "get"
     })
 }
+
+export function UploadImage(data: FormData) {
+    return request<ApiResponseData<any>>({
+        url: "images/upload",
+        method: "post",
+        data,
+        contentType: "multipart/form-data"
+    })
+}
+
+export function deleteShopCatImage(imageId: number, catId: number) {
+    return request<ApiResponseData<any>>({
+        url: "images/ShopCatDelete",
+        method: "post",
+        data: {imageId, catId},
+        contentType: "application/x-www-form-urlencoded"
+    })
+}
+
+export function uploadShopCatImage(data: FormData) {
+    return request<ApiResponseData<any>>({
+        url: "cat/catUpload",
+        method: "post",
+        data,
+        contentType: "multipart/form-data"
+    })
+}
+
+export function uploadShopImage(data: FormData) {
+    return request<ApiResponseData<any>>({
+        url: "shopImages/upload",
+        method: "post",
+        data,
+        contentType: "multipart/form-data"
+    })
+}
+
+export function deleteShopImage(imageId: number) {
+    return request<ApiResponseData<any>>({
+        url: "shopImages/Delete",
+        method: "post",
+        data: {imageId},
+        contentType: "application/x-www-form-urlencoded"
+    })
+}

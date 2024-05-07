@@ -33,3 +33,35 @@ export function deleteCatCategoriesApi(categoryId: number) {
         contentType: "application/x-www-form-urlencoded"
     })
 }
+
+export function getCatByShopIdApi(shopId: number) {
+    return request<ApiResponseData<any>>({
+        url: "cat/getCatByShopId?shopId=" + shopId,
+        method: "get"
+    })
+}
+
+export function getCatBySearchApi(data: any) {
+    return request<ApiResponseData<any>>({
+        url: "cat/getCat",
+        method: "post",
+        data
+    })
+}
+
+export function addCatDataApi(data: any) {
+    return request<ApiResponseData<any>>({
+        url: "cat/insertCat",
+        method: "post",
+        data
+    })
+}
+
+export function deleteCatApi(catId: number) {
+    return request<ApiResponseData<any>>({
+        url: "cat/deleteCat",
+        method: "post",
+        data: {catId},
+        contentType: "application/x-www-form-urlencoded"
+    })
+}

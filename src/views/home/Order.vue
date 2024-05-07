@@ -14,15 +14,18 @@ const userId = useUserStore().userId;
           <el-card class="box-card">
             <template #header>
               <div class="card-header">
-                <span>Card name</span>
+                <span>Puchi Marry</span>
               </div>
             </template>
             <div>
               <p>订单号：{{userId}}</p>
               <p>订单金额：100</p>
-              <p>订单状态：已完成</p>
+              <p>订单状态：已支付</p>
+              <p>预约时间：2024-5-10 14:00</p>
             </div>
-            <template #footer>Footer content</template>
+            <template #footer>
+              <el-button type="primary" size="mini">查看详情</el-button>
+            </template>
           </el-card>
         </el-col>
       </el-row>
