@@ -65,3 +65,5 @@ export function deleteCatApi(catId: number) {
         contentType: "application/x-www-form-urlencoded"
     })
 }
+
+

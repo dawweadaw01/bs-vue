@@ -21,3 +21,9 @@ export interface ShopListRequestData {
     /** 查询参数: 关键字 */
     keyword?: string
 }
+
+export interface scoreData{
+    userId?: number
+    storeId: number
+    score: number
+}

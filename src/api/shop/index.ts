@@ -1,4 +1,4 @@
-import type {ShopListRequestData} from "@/api/shop/types/shop";
+import type {scoreData, ShopListRequestData} from "@/api/shop/types/shop";
 import {request} from "@/util/service";
 
 
@@ -43,6 +43,21 @@ export function updateCatDataApi(data: any) {
 export function getShopRecommendApi() {
     return request<ApiResponseData<any>>({
         url: "recommend/getShopsRecommend",
+        method: "get",
+    })
+}
+
+export function updateScoreApi(data: scoreData) {
+    return request<ApiResponseData<any>>({
+        url: "score/updateScore",
+        method: "post",
+        data
+    })
+}
+
+export function getShopScore(id: number) {
+    return request<ApiResponseData<any>>({
+        url: "score/getScore?storeId=" + id,
         method: "get",
     })
 }

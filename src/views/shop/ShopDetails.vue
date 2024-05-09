@@ -3,7 +3,7 @@
 import {onMounted, type Ref, ref} from "vue";
 import {useRoute} from "vue-router";
 import type {Shop} from "@/api/shop/types/shop";
-import {getShopDetailsApi} from "@/api/shop";
+import {getShopDetailsApi, getShopScore, updateScoreApi} from "@/api/shop";
 import '../../bootstrap3/css/bootstrap.css'
 import '../../bootstrap3/css/font-awesome.css'
 import '../../assets/css/gsdk.css'
@@ -38,8 +38,6 @@ const appointmentInfo = ref<appointment>({
 // 生命周期开始时调用
 onMounted(() => {
   if (route.query.id) {
-    console.log("获取到id")
-    console.log(route.query.id)
     shop_id.value = Number(route.query.id)
     appointmentInfo.value.storeId = shop_id.value
   } else {
@@ -52,6 +50,13 @@ onMounted(() => {
       }
   ).catch(() => {
     console.log("获取数据失败")
+  })
+  getShopScore(typeof shop_id.value === "number" ? shop_id.value : 0).then(
+      ({data}) => {
+        score.value = data
+      }
+  ).catch(() => {
+    console.log("获取评分数据失败")
   })
 })
 const appointmentDialog = ref<boolean>(false)
@@ -104,7 +109,20 @@ const HandelAppointment = () => {
     ElMessage.error("预约失败")
   })
 }
-
+const score = ref(0)
+const colors = ref(['#99A9BF', '#F7BA2A', '#FF9900']) // same as { 2: '#99A9BF', 4: { value: '#F7BA2A', excluded: true }, 5: '#FF9900' }
+const updateScore = (value: number) => {
+  updateScoreApi({
+    storeId: shopDetails.value.id,
+    score: value
+  }).then(
+      () => {
+        ElMessage.success("评分成功")
+      }
+  ).catch(() => {
+    ElMessage.error("评分失败")
+  })
+}
 </script>
 
 <template>
@@ -115,7 +133,9 @@ const HandelAppointment = () => {
     <div class="container tim-container" style="padding-top:100px">
       <div class="row">
         <div class="col-md-4 text-center"><img :src="shopDetails.logo" alt="logo" style="width: 250px"></div>
-        <div class="col-md-8 text-center"><h1 class="text-center">{{ shopDetails.name }}</h1></div>
+        <div class="col-md-8 text-center"><h1 class="text-center">{{ shopDetails.name }}</h1>
+          <el-rate v-model="score" :colors="colors" size="large" @change="updateScore"/>
+        </div>
       </div>
     </div> <!-- end extras -->
 
@@ -259,6 +279,24 @@ const HandelAppointment = () => {
 </template>
 
 <style scoped>
+
+.demo-rate-block {
+  padding: 30px 0;
+  text-align: center;
+  border-right: solid 1px var(--el-border-color);
+  display: inline-block;
+  width: 49%;
+  box-sizing: border-box;
+}
+.demo-rate-block:last-child {
+  border-right: none;
+}
+.demo-rate-block .demonstration {
+  display: block;
+  color: var(--el-text-color-secondary);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
 
 .demo-datetime-picker {
   display: flex;
