@@ -61,6 +61,13 @@ const router = createRouter({
                     component: () => import('@/views/shop/ShopDetails.vue'),
                     children: []
                 },
+                {
+                    path: '/search',
+                    name: 'search',
+                    component: () => import('@/views/search/Search.vue'),
+                    children: []
+                },
+
             ]
         },
         {

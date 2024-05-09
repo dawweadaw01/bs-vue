@@ -45,9 +45,6 @@ const pay = () => {
               <el-button v-if="checkPermission(['super-admin','shop'])" @click="admin">后台管理</el-button>
               <el-button @click="logout">退出登录</el-button>
               <el-button @click="setting">账号设置</el-button>
-              <div class="payBtn">
-                <el-button type="primary" @click="pay">支付</el-button>
-              </div>
             </div>
           </div>
           <div class="div-autograph">

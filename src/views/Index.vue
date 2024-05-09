@@ -2,6 +2,7 @@
 import {ref} from "vue";
 import {useUserStore} from '@/store/modules/user'
 import LoginForm from '@/views/login/Login.vue';
+import router from "@/router";
 
 const activeIndex = ref('home')
 const handleSelect = (key: string, keyPath: string[]) => {
@@ -12,7 +13,6 @@ const isLogin = () => {
 
 }
 const input = ref('')
-
 const isLoginFormVisible = ref(false);
 const title = ref('');
 const showLogin = () => {
@@ -26,6 +26,20 @@ const showReg = () => {
   console.log(isLoginFormVisible.value)
 };
 
+const keyword = ref('')
+const restKeyword = () => {
+  keyword.value = ''
+}
+const search = () => {
+  router.push({
+    path: '/search',
+    query: {
+      keyword: keyword.value
+    }
+  })
+  keyword.value = ''
+}
+
 </script>
 
 <template>
@@ -33,7 +47,7 @@ const showReg = () => {
     <el-container>
       <el-header>
         <el-menu
-            :default-active="activeIndex"
+            :default-active=$route.path
             class="el-menu-demo"
             mode="horizontal"
             :ellipsis="false"
@@ -49,20 +63,20 @@ const showReg = () => {
             <input
                 type="text"
                 placeholder="Search..."
-                v-model="searchTerm"
+                v-model="keyword"
             />
             <el-button>
-              <img src="@/assets/icon/del.svg" style="height: 20px" alt="del">
+              <img src="@/assets/icon/del.svg" style="height: 20px" alt="del" @click="restKeyword">
             </el-button>
 
             <el-button>
-              <img src="@/assets/icon/search.svg" style="height: 20px" alt="del">
+              <img src="@/assets/icon/search.svg" style="height: 20px" alt="del" @click="search">
             </el-button>
           </div>
           <div class="flex-grow">
-            <el-menu-item index="index">首页</el-menu-item>
-            <el-menu-item index="shop">店铺</el-menu-item>
-            <el-menu-item index="catCategories">猫咪种类</el-menu-item>
+            <el-menu-item index="/index">首页</el-menu-item>
+            <el-menu-item index="/shop">店铺</el-menu-item>
+            <el-menu-item index="/catCategories">猫咪种类</el-menu-item>
           </div>
           <el-menu-item v-if="isLogin()" index="home" class="user-center">个人中心</el-menu-item>
           <div v-else class="user-center">
@@ -77,7 +91,9 @@ const showReg = () => {
       </el-header>
       <el-main>
         <div>
-          <RouterView/>
+          <keep-alive>
+            <RouterView/>
+          </keep-alive>
         </div>
       </el-main>
     </el-container>

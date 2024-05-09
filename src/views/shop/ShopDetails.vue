@@ -19,6 +19,7 @@ const dialog = ref<boolean>(false)
 const route = useRoute()
 const shop_id: Ref<number | undefined> = ref<number>()
 const shopDetails = ref<Shop>({
+  fixedPrice: 0,
   cover: "", ownerId: 0, status: 0,
   id: 0,
   name: "",
@@ -121,8 +122,7 @@ const HandelAppointment = () => {
     <div class="container tim-container" style="padding-top:50px">
       <h3 class="text-pink">shop images</h3>
       <div class="row">
-        <div class="col-md-4 img-store" v-for="shopImg in shopDetails.shopImages"><img :src="shopImg"
-                                                                                       class="img-rounded img-responsive">
+        <div class="col-md-4 img-store" v-for="shopImg in shopDetails.shopImages"><img :src="shopImg" class="img-rounded img-responsive">
         </div>
       </div>
     </div>

@@ -39,3 +39,10 @@ export function updateCatDataApi(data: any) {
         data
     })
 }
+
+export function getShopRecommendApi() {
+    return request<ApiResponseData<any>>({
+        url: "recommend/getShopsRecommend",
+        method: "get",
+    })
+}

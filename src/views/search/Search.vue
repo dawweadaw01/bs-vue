@@ -1,28 +1,35 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 
 import {onMounted, ref, watch} from "vue";
-import type {Shop} from "@/api/shop/types/shop";
+import {useRoute} from "vue-router";
 import {usePagination} from "@/hooks/usePagination";
-import {getShopListApi, getShopRecommendApi} from "@/api/shop";
+import type {Shop} from "@/api/shop/types/shop";
+import {getShopListApi} from "@/api/shop";
 import router from "@/router";
-
-const {paginationData} = usePagination()
+const route = useRoute()
+const {paginationData, handleCurrentChange, handleSizeChange} = usePagination()
 const shopList = ref<Shop[]>([])
+const keyword = ref('')
+
+onMounted(() => {
+  keyword.value = route.query.keyword as string
+})
 
 const getTableData = () => {
-  getShopRecommendApi().then(
+  getShopListApi({
+    page: paginationData.currentPage,
+    size: paginationData.pageSize,
+    keyword: keyword.value
+  }).then(
       ({data}) => {
-        shopList.value = data
+        paginationData.total = data.total
+        shopList.value = data.records
       }
   ).catch(() => {
     shopList.value = []
     console.log("获取数据失败")
   })
 }
-
-onMounted(() => {
-  getTableData()
-})
 
 const shopDetails = (id: number) => {
   router.push({
@@ -32,6 +39,8 @@ const shopDetails = (id: number) => {
     }
   })
 }
+
+watch([() => paginationData.currentPage, () => paginationData.pageSize], getTableData, {immediate: true})
 
 </script>
 
@@ -60,6 +69,18 @@ const shopDetails = (id: number) => {
           </el-col>
         </el-row>
       </el-card>
+    </div>
+    <div class="pager-wrapper">
+      <el-pagination
+          background
+          :layout="paginationData.layout"
+          :page-sizes="paginationData.pageSizes"
+          :total="paginationData.total"
+          :page-size="paginationData.pageSize"
+          :currentPage="paginationData.currentPage"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+      />
     </div>
   </div>
 </template>
