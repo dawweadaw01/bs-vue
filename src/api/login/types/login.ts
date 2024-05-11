@@ -7,6 +7,13 @@ export interface LoginRequestData {
     code?: string
 }
 
+export interface regRequestData {
+    /** 用户名 */
+    username: string
+    /** 密码 */
+    password: string
+}
+
 export interface UserListRequestData {
     /** 当前页码 */
     page: number

@@ -1,6 +1,6 @@
 import {request} from "@/util/service";
 import type * as Login from "./types/login"
-import type {UpdateUserPhone, UpdateUserPwd} from "./types/login";
+import type {regRequestData, UpdateUserPhone, UpdateUserPwd, UserInfo} from "./types/login";
 
 export function loginApi(data: Login.LoginRequestData) {
     return request<ApiResponseData<any>>({
@@ -10,7 +10,7 @@ export function loginApi(data: Login.LoginRequestData) {
     })
 }
 
-export function regApi(data: Login.LoginRequestData) {
+export function regApi(data: regRequestData) {
     return request<ApiResponseData<any>>({
         url: "sysUser/insert",
         method: "post",

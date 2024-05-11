@@ -61,3 +61,11 @@ export function getShopScore(id: number) {
         method: "get",
     })
 }
+
+export function insertShopInfoApi(data: any) {
+    return request<ApiResponseData<any>>({
+        url: "shops/insertShops",
+        method: "post",
+        data
+    })
+}

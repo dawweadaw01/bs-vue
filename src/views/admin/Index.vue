@@ -6,6 +6,7 @@ import {ElMessage, type UploadProps, type UploadUserFile} from "element-plus";
 import {deleteShopImage, UploadImage, uploadShopImage} from "@/api/image";
 
 const shopInfo = ref<Shop>({
+  fixedPrice: 0,
   cover: "", ownerId: 0, status: 0,
   id: 0,
   name: "",

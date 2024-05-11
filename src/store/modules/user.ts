@@ -27,7 +27,10 @@ export const useUserStore = defineStore("user", () => {
             autograph.value = data.autograph
         }
         const reg = async ({name, pwd}: LoginRequestData) => {
-            const responseData = await regApi({name, pwd})
+            const responseData = await regApi({
+                username: name,
+                password: pwd
+            })
             setToken(responseData.data.token, responseData.data.expire)
             token.value = responseData.data.token
         }
